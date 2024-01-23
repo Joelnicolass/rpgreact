@@ -1,0 +1,65 @@
+/* 
+  import local fonts
+*/
+
+@font-face {
+  font-family: "PixelBoy";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/pixelboy.ttf");
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  font-family: "PixelBoy", monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #161616;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --color-primary: #3a224f;
+  --color-primary-hover: #a329c9;
+  --color-secondary: #edbb70;
+  --color-secondary-hover: #ffdead;
+  --color-success: #a0de85;
+  --color-error: #f44336;
+  /*
+    #4e2557 
+    #73326a
+    #a34474
+    #c7506b
+    #ed9e70
+    #fcc88d
+    #ffd7a3
+    #ffefc9
+    #f0eba8
+    #69c976
+    #50ab76
+    #36777a
+    #2e5c6b
+    #223d54
+    #1f2e52
+  */
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
