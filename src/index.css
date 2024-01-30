@@ -1,6 +1,14 @@
 /* 
   import local fonts
 */
+@import url("https://fonts.googleapis.com/css2?family=Pixelify+Sans&display=swap");
+
+@font-face {
+  font-family: "Pixelify Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("./assets/fonts/pixelify-sans.ttf");
+}
 
 @font-face {
   font-family: "PixelBoy";
@@ -15,16 +23,17 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: inherit;
 }
 
 :root {
-  font-family: "PixelBoy", monospace;
+  font-family: "Pixelify Sans", monospace;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #161616;
+  background-color: #000;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -32,9 +41,9 @@
   -moz-osx-font-smoothing: grayscale;
 
   --color-primary: #3a224f;
-  --color-primary-hover: #a329c9;
-  --color-secondary: #edbb70;
-  --color-secondary-hover: #ffdead;
+  --color-primary-hover: #a34474;
+  --color-secondary: #ed9e70;
+  --color-secondary-hover: #fcc88d;
   --color-success: #a0de85;
   --color-error: #f44336;
   /*

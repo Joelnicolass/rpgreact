@@ -286,4 +286,46 @@ export class CharacterFactory {
       initialLevel,
     });
   }
+
+  static createCustomCharacter(
+    name: string,
+    initialLevel: number,
+    type: "warrior" | "wizard" | "archer",
+    attributes: {
+      health: number;
+      mana: number;
+      attack: number;
+      defense: number;
+    }
+  ): Character {
+    const _typeMap = {
+      warrior: CharacterType.WARRIOR,
+      wizard: CharacterType.WIZARD,
+      archer: CharacterType.ARCHER,
+    };
+
+    const skills = [new BasicAttack(), new RandomTribesAttack(false)];
+
+    return new Character({
+      name,
+      type: [_typeMap[type]],
+      attributes: AttributesFactory.createAttributes(
+        [
+          AttributeType.HP,
+          AttributeType.ATK,
+          AttributeType.DEF,
+          AttributeType.MANA,
+        ],
+        [
+          attributes.health,
+          attributes.attack,
+          attributes.defense,
+          attributes.mana,
+        ]
+      ),
+      objectsEquipped: [],
+      skills,
+      initialLevel,
+    });
+  }
 }

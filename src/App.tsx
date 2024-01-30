@@ -1,13 +1,14 @@
-import React from "react";
-import PixelatedButton from "./core/presentation/components/pixelated/pixelated_button/pixelated_button";
+import { RouterProvider } from "react-router-dom";
+import { appRouter } from "./core/presentation/routes/app_router";
+import RootProvider from "./core/presentation/providers/root_provider";
 
 const App = () => {
   return (
-    <div>
-      <PixelatedButton>Crear Personaje</PixelatedButton>
-
-      <PixelatedButton secondary>Crear Personaje</PixelatedButton>
-    </div>
+    <>
+      <RootProvider>
+        <RouterProvider router={appRouter} />
+      </RootProvider>
+    </>
   );
 };
 
