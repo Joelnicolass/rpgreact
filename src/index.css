@@ -72,3 +72,27 @@ body {
   min-width: 320px;
   min-height: 100vh;
 }
+
+/* 
+
+  shake animation
+
+*/
+
+@keyframes shake {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

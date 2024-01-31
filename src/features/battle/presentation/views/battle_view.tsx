@@ -114,8 +114,11 @@ const BattleView = () => {
             objectFit: "contain",
             zIndex: -1,
             height: "80dvh",
-            left: "50%",
-            transform: "translateX(-50%)",
+            width: "100%",
+            transition: "all 0.5s ease",
+            animation: "shake 1.5s ease-in-out 0.5s infinite",
+            imageRendering: "pixelated",
+            filter: "drop-shadow(0px 0px 100px var(--color-secondary))",
           }}
           src={warrior}
           alt=""

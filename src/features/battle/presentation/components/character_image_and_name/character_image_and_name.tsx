@@ -50,6 +50,7 @@ const CharacterImageAndName = ({ name, level, image, ...props }: Props) => {
       <img
         style={{
           height: "150px",
+          filter: "drop-shadow(0px 0px 100px var(--color-secondary))",
         }}
         src={image}
       />

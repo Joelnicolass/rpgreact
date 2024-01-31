@@ -1,16 +1,19 @@
 import React from "react";
 
-type Props = {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   image: string;
   force?: number;
   cost?: number;
-};
+  disabled?: boolean;
+}
 
-const Skill = ({ image, name, force, cost }: Props) => {
+const Skill = ({ image, name, force, cost, disabled, ...props }: Props) => {
+  const MAX_NAME_LENGTH = 10;
+
   const formattedName = (name: string) => {
-    if (name.length > 10) {
-      return name.slice(0, 10) + "...";
+    if (name.length > MAX_NAME_LENGTH) {
+      return name.slice(0, MAX_NAME_LENGTH) + "...";
     }
 
     return name;
@@ -23,7 +26,9 @@ const Skill = ({ image, name, force, cost }: Props) => {
         flexDirection: "column",
         alignItems: "center",
         gap: "10px",
+        ...props.style,
       }}
+      {...props}
     >
       <span
         style={{
@@ -42,6 +47,7 @@ const Skill = ({ image, name, force, cost }: Props) => {
           style={{
             height: "50px",
             width: "50px",
+            filter: disabled ? "grayscale(100%)" : "none",
           }}
           src={image}
           alt=""
