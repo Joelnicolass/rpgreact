@@ -27,6 +27,7 @@ const Skill = ({ image, name, force, cost, disabled, ...props }: Props) => {
         flexDirection: "column",
         alignItems: "center",
         gap: "10px",
+        cursor: disabled ? "not-allowed" : "pointer",
         ...props.style,
       }}
       {...props}

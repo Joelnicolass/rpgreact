@@ -8,6 +8,7 @@ const Image = ({ ...props }: Props) => {
       {...props}
       style={{
         imageRendering: "pixelated",
+
         ...props.style,
       }}
     />

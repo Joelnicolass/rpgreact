@@ -5,6 +5,23 @@ import archer from "../../../../assets/arquerobg.png";
 import warrior from "../../../../assets/gerrerobg.png";
 import mage from "../../../../assets/magobg.png";
 
+import enemy1 from "../../../../assets/enemigo1.png";
+import enemy2 from "../../../../assets/enemigo2.png";
+import enemy3 from "../../../../assets/enemigo3.png";
+import enemy4 from "../../../../assets/enemigo4.png";
+import enemy5 from "../../../../assets/enemigo5.png";
+import enemy6 from "../../../../assets/enemigo6.png";
+import enemy7 from "../../../../assets/enemigo7.png";
+import enemy8 from "../../../../assets/enemigo8.png";
+import enemy9 from "../../../../assets/enemigo9.png";
+import enemy10 from "../../../../assets/enemigo10.png";
+import enemy11 from "../../../../assets/enemigo11.png";
+import enemy12 from "../../../../assets/enemigo12.png";
+import enemy13 from "../../../../assets/enemigo13.png";
+import enemy14 from "../../../../assets/enemigo14.png";
+import enemy15 from "../../../../assets/enemigo15.png";
+import enemy16 from "../../../../assets/enemigo16.png";
+
 import skillmagic from "../../../../assets/skillmagic.webp";
 import skillarrow from "../../../../assets/skillarch2.webp";
 import skillwarrior from "../../../../assets/skillwarr2.webp";
@@ -16,6 +33,9 @@ import PixelatedBar from "../../../../core/presentation/components/pixelated/pix
 import Stats from "../components/stats/stats";
 import Footer from "../components/footer/footer";
 import ListSkills from "../components/list_skills/list_skills";
+import Header from "../components/header/header";
+import EnemySection from "../components/enemy_section/enemy_section";
+import EnemyImage from "../components/enemy_image/enemy_image";
 
 const mockStats = [
   {
@@ -83,46 +103,15 @@ const mockSkills = [
 const BattleView = () => {
   return (
     <MainLayout>
-      <div
-        style={{
-          height: "50dvh",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          padding: "20px",
-          //maxHeight: "300px" mover a media query para devices pequenos
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            textAlign: "center",
-            textWrap: "pretty",
-            gap: "20px",
-          }}
-        >
+      <Header>
+        <EnemySection>
           <h2>Opyguá Maestro de ceremonias</h2>
 
           <PixelatedBar name="HP" color="green" max={1000} current={790} />
-        </div>
+        </EnemySection>
 
-        <img
-          style={{
-            position: "absolute",
-            objectFit: "contain",
-            zIndex: -1,
-            height: "80dvh",
-            width: "100%",
-            transition: "all 0.5s ease",
-            animation: "shake 1.5s ease-in-out infinite",
-            filter: "drop-shadow(0px 0px 100px var(--color-secondary))",
-          }}
-          src={warrior}
-          alt=""
-        />
-      </div>
+        <EnemyImage image={enemy16} />
+      </Header>
 
       {/* 
       FOOTER

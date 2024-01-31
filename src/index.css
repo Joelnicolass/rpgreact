@@ -46,6 +46,7 @@
   --color-secondary-hover: #fcc88d;
   --color-success: #a0de85;
   --color-error: #f44336;
+
   /*
     #4e2557 
     #73326a
@@ -81,12 +82,32 @@ body {
 
 @keyframes shake {
   0% {
-    transform: translate(1px, 1px) rotate(0deg);
+    transform: translate(1px, 1px);
   }
   50% {
-    transform: translate(-1px, -2px) rotate(-1deg);
+    transform: translate(-1px, -1px);
   }
   100% {
-    transform: translate(1px, 1px) rotate(0deg);
+    transform: translate(1px, 1px);
+  }
+}
+
+/* 
+
+  furia animation
+
+*/
+
+@keyframes furia {
+  0% {
+    filter: contrast(2000%) saturate(200%)
+      drop-shadow(0 0 100px var(--color-error));
+  }
+  50% {
+    filter: contrast(1000%) saturate(100%) drop-shadow(0 0 0.5rem #000);
+  }
+  100% {
+    filter: contrast(2000%) saturate(200%)
+      drop-shadow(0 0 100px var(--color-error));
   }
 }

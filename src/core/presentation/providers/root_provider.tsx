@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 type Props = {
   children: React.ReactNode | React.ReactNode[];
