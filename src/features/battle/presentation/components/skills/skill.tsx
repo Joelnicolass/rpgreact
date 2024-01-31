@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "../../../../../core/presentation/components/image/image";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -43,7 +44,7 @@ const Skill = ({ image, name, force, cost, disabled, ...props }: Props) => {
           position: "relative",
         }}
       >
-        <img
+        <Image
           style={{
             height: "50px",
             width: "50px",

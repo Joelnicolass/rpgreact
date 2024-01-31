@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "../../../../../core/presentation/components/image/image";
 
 type Props = {
   name: string;
@@ -29,7 +30,7 @@ const CharacterSelectItem = ({
       onClick={onClick}
     >
       <span>{name}</span>
-      <img style={{ width: "100%" }} src={image} />
+      <Image style={{ width: "100%" }} src={image} />
     </div>
   );
 };

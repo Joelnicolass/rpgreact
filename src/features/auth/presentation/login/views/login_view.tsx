@@ -1,4 +1,5 @@
 import bg from "../../../../../assets/bg.webp";
+import Image from "../../../../../core/presentation/components/image/image";
 import MainLayout from "../../../../../core/presentation/components/main_layout/main_layout";
 import PixelatedButton from "../../../../../core/presentation/components/pixelated/pixelated_button/pixelated_button";
 import PixelatedInput from "../../../../../core/presentation/components/pixelated/pixelated_input/pixelated_input";
@@ -21,7 +22,7 @@ const LoginView = () => {
   return (
     <div style={styles.container}>
       <MainLayout>
-        <img src={bg} alt="background" style={styles.bg} />
+        <Image src={bg} alt="background" style={styles.bg} />
         <div style={styles.title}>
           <TitleGame />
         </div>

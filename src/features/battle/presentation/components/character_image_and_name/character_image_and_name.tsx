@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "../../../../../core/presentation/components/image/image";
 
 interface Props extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
@@ -47,7 +48,7 @@ const CharacterImageAndName = ({ name, level, image, ...props }: Props) => {
         </p>
       </div>
 
-      <img
+      <Image
         style={{
           height: "150px",
           filter: "drop-shadow(0px 0px 100px var(--color-secondary))",
