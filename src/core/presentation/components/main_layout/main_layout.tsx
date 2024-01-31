@@ -18,7 +18,7 @@ const MainLayout = ({ children, style }: Props) => {
         width: "100dvw",
         border: "4px solid white",
         borderRadius: "16px",
-        maxWidth: "600px",
+        overflow: "hidden",
         ...style,
       }}
     >

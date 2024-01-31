@@ -82,9 +82,45 @@ const mockSkills = [
 
 const BattleView = () => {
   return (
-    <MainLayout style={{ overflow: "hidden" }}>
-      <div></div>
-      <div></div>
+    <MainLayout>
+      <div
+        style={{
+          height: "50dvh",
+          width: "100%",
+          display: "flex",
+          flexDirection: "column",
+          padding: "20px",
+          //maxHeight: "300px" mover a media query para devices pequenos
+        }}
+      >
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            textAlign: "center",
+            textWrap: "pretty",
+            gap: "20px",
+          }}
+        >
+          <h2>Opyguá Maestro de ceremonias</h2>
+
+          <PixelatedBar name="HP" color="green" max={1000} current={790} />
+        </div>
+
+        <img
+          style={{
+            position: "absolute",
+            objectFit: "contain",
+            zIndex: -1,
+            height: "80dvh",
+            left: "50%",
+            transform: "translateX(-50%)",
+          }}
+          src={warrior}
+          alt=""
+        />
+      </div>
 
       {/* 
       FOOTER
@@ -93,7 +129,7 @@ const BattleView = () => {
       <Footer>
         <CharacterImageAndName
           style={{ gridArea: "character" }}
-          name="Nico"
+          name="Pituar ñorà"
           image={archer}
           level={1}
         />

@@ -7,6 +7,16 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CharacterImageAndName = ({ name, level, image, ...props }: Props) => {
+  const MAX_NAME_LENGTH = 8;
+
+  const formatName = (name: string) => {
+    if (name.length > MAX_NAME_LENGTH) {
+      return name.slice(0, MAX_NAME_LENGTH) + "...";
+    }
+
+    return name;
+  };
+
   return (
     <div
       {...props}
@@ -19,12 +29,22 @@ const CharacterImageAndName = ({ name, level, image, ...props }: Props) => {
     >
       <div
         style={{
+          width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
         }}
       >
-        <p>{name}</p>
+        <p>
+          {formatName(name)}{" "}
+          <span
+            style={{
+              color: "var(--color-secondary)",
+            }}
+          >
+            ( {level} )
+          </span>
+        </p>
       </div>
 
       <img

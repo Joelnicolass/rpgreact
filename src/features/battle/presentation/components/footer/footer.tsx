@@ -1,10 +1,10 @@
 import React from "react";
 
-type Props = {
+interface Props extends React.HTMLAttributes<HTMLDivElement> {
   children: React.ReactNode | React.ReactNode[];
-};
+}
 
-const Footer = ({ children }: Props) => {
+const Footer = ({ children, ...props }: Props) => {
   return (
     <div
       style={{
@@ -12,12 +12,17 @@ const Footer = ({ children }: Props) => {
         gridTemplateAreas: `
     "character stats stats stats"
     "character stats stats stats"
-    "character skills skills skills"
+    "skills skills skills skills"
     `,
         width: "100%",
-        height: "250px",
+        height: "45dvh",
+        maxHeight: "300px",
         padding: "20px",
+        justifyContent: "space-between",
+        alignItems: "center",
+        ...props.style,
       }}
+      {...props}
     >
       {children}
     </div>
