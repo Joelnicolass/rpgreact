@@ -24,6 +24,10 @@ export class Attribute implements Saveable {
     this._value = value;
   }
 
+  get maxValue(): number {
+    return this._maxValue;
+  }
+
   applyChange(value: number) {
     if (this._value + value > this._maxValue) {
       this._value = this._maxValue;

@@ -12,6 +12,9 @@ interface Props extends React.HTMLAttributes<HTMLDivElement> {
 const PixelatedBar = ({ max, current, color, name, ...props }: Props) => {
   const percentage = (current / max) * 100;
 
+  const value = current < 1 ? 0 : current;
+  const isDeath = current < 1;
+
   return (
     <div
       style={{
@@ -27,14 +30,14 @@ const PixelatedBar = ({ max, current, color, name, ...props }: Props) => {
     >
       <div
         style={{
-          gridColumn: `span ${current}`,
-          backgroundColor: color,
+          gridColumn: `span ${isDeath ? max : value}`,
+          backgroundColor: isDeath ? "red" : color,
         }}
       ></div>
-      {current < max && (
+      {value < max && (
         <div
           style={{
-            gridColumn: `span ${max - current}`,
+            gridColumn: `span ${isDeath ? max : max - value}`,
             backgroundColor: "red",
           }}
         ></div>
@@ -48,7 +51,7 @@ const PixelatedBar = ({ max, current, color, name, ...props }: Props) => {
           left: 0,
         }}
       >
-        {name} {current}/{max} ({percentage}%)
+        {name} {value}/{max} ({percentage}%)
       </p>
     </div>
   );

@@ -22,6 +22,8 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
   private _effects: EffectBase[];
   private _manaCost: number;
   private _admittedCharacterTypes: CharacterType[];
+  private _cooldown: number;
+  private _cooldownCounter: number;
 
   constructor({
     name,
@@ -30,6 +32,8 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
     effects,
     manaCost,
     admittedCharacterTypes,
+    cooldown,
+    cooldownCounter,
   }: {
     name: string;
     type: SkillType[];
@@ -37,6 +41,8 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
     admittedCharacterTypes?: CharacterType[];
     effects?: EffectBase[];
     manaCost?: number;
+    cooldown?: number;
+    cooldownCounter?: number;
   }) {
     this._name = name;
     this._type = type;
@@ -48,6 +54,8 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
       CharacterType.WIZARD,
       CharacterType.ARCHER,
     ];
+    this._cooldown = cooldown || 0;
+    this._cooldownCounter = cooldownCounter || 0;
   }
 
   get name(): string {
@@ -74,9 +82,25 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
     return this._admittedCharacterTypes;
   }
 
+  get cooldown(): number {
+    return this._cooldown;
+  }
+
+  get cooldownCounter(): number {
+    return this._cooldownCounter;
+  }
+
   protected canUse(player: Character): boolean {
     const mana = player.getAttribute(AttributeType.MANA);
-    return mana.value >= this._manaCost;
+    return mana.value >= this._manaCost && this._cooldownCounter === 0;
+  }
+
+  protected useCooldown(): void {
+    this._cooldownCounter = this._cooldown;
+  }
+
+  public updateCooldown(): void {
+    if (this._cooldownCounter > 0) this._cooldownCounter--;
   }
 
   protected useMana(player: Character): void {
@@ -93,6 +117,7 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
   public use(player: Character, targets: Character[]) {
     if (!this.canUse(player)) throw new Error("Not enough mana");
     this.useMana(player);
+    this.useCooldown();
 
     if (this._type.includes(SkillType.SPECIAL_EFFECT_PLAYER)) {
       this.applySpecialEffect(player);
@@ -152,15 +177,12 @@ export abstract class SkillBase implements UsableInPlayerAndEnemy, Saveable {
       EffectBase.load(effect)
     );
 
-    const admittedCharacterTypes = (
-      data.admittedCharacterTypes as string[]
-    ).map((type) => CharacterType[type as keyof typeof CharacterType]);
+    const admittedCharacterTypes =
+      data.admittedCharacterTypes as CharacterType[];
 
     const skill = new (this as any)({
       name: data.name as string,
-      type: (data.type as string[]).map(
-        (type) => SkillType[type as keyof typeof SkillType]
-      ),
+      type: data.type as SkillType[],
       force: data.force as number,
       effects,
       manaCost: data.manaCost as number,

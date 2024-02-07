@@ -18,7 +18,7 @@ const ListSkills = ({ data, renderItem, ...props }: Props) => {
       {...props}
       style={{
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
         alignItems: "center",
         padding: "5px",
         ...props.style,

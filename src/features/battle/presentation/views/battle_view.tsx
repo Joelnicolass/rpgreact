@@ -1,10 +1,6 @@
 import React from "react";
 import MainLayout from "../../../../core/presentation/components/main_layout/main_layout";
 
-import archer from "../../../../assets/arquerobg.png";
-import warrior from "../../../../assets/gerrerobg.png";
-import mage from "../../../../assets/magobg.png";
-
 import enemy1 from "../../../../assets/enemigo1.png";
 import enemy2 from "../../../../assets/enemigo2.png";
 import enemy3 from "../../../../assets/enemigo3.png";
@@ -22,11 +18,6 @@ import enemy14 from "../../../../assets/enemigo14.png";
 import enemy15 from "../../../../assets/enemigo15.png";
 import enemy16 from "../../../../assets/enemigo16.png";
 
-import skillmagic from "../../../../assets/skillmagic.webp";
-import skillarrow from "../../../../assets/skillarch2.webp";
-import skillwarrior from "../../../../assets/skillwarr2.webp";
-import skillmaster from "../../../../assets/skilldeathmaster3.webp";
-import skilldeath from "../../../../assets/skilldeathmaster3.webp";
 import Skill from "../components/skills/skill";
 import CharacterImageAndName from "../components/character_image_and_name/character_image_and_name";
 import PixelatedBar from "../../../../core/presentation/components/pixelated/pixelated_bar/pixelated_bar";
@@ -36,101 +27,56 @@ import ListSkills from "../components/list_skills/list_skills";
 import Header from "../components/header/header";
 import EnemySection from "../components/enemy_section/enemy_section";
 import EnemyImage from "../components/enemy_image/enemy_image";
-
-const mockStats = [
-  {
-    name: "ATK",
-    color: "red",
-    max: 100,
-    current: 50,
-  },
-  {
-    name: "DEF",
-    color: "yellow",
-    max: 100,
-    current: 50,
-  },
-  {
-    name: "EXP",
-    color: "purple",
-    max: 100,
-    current: 50,
-  },
-];
-
-const mockBars = [
-  {
-    name: "HP",
-    color: "green",
-    max: 100,
-    current: 50,
-  },
-  {
-    name: "MP",
-    color: "blue",
-    max: 100,
-    current: 50,
-  },
-];
-
-const mockSkills = [
-  {
-    image: skillmagic,
-    name: "Ataque magico de opy",
-    force: 10,
-    cost: 50,
-  },
-  {
-    image: skillarrow,
-    name: "Ataque de arqierp",
-    force: 10,
-    cost: 50,
-  },
-  {
-    image: skillwarrior,
-    name: "Ataque normal",
-    force: 10,
-    cost: 50,
-  },
-  {
-    image: skillmaster,
-    name: "Ataque mestro",
-    force: 10,
-    cost: 50,
-  },
-];
+import RoomView from "../../../room/presentation/views/room_view";
+import { useBattleViewModel } from "./battle_view_model";
 
 const BattleView = () => {
+  const {
+    playerState: {
+      player: { playerUI },
+      getPlayerImage,
+      getStatsBars,
+      getStatsIndicators,
+      getSkills,
+    },
+    enemyState: { enemy, enemyHP },
+    actions: { attack },
+  } = useBattleViewModel();
+
+  if (!playerUI.type) return <div>LOADING</div>;
+
   return (
     <MainLayout>
       <Header>
         <EnemySection>
-          <h2>Opyguá Maestro de ceremonias</h2>
+          <h2>{enemy?.name}</h2>
 
-          <PixelatedBar name="HP" color="green" max={1000} current={790} />
+          <PixelatedBar
+            name={"HP"}
+            color="green"
+            max={enemyHP!.maxValue}
+            current={enemyHP!.value}
+          />
         </EnemySection>
 
-        <EnemyImage image={enemy16} />
+        <EnemyImage image={enemy3} />
       </Header>
-
-      {/* 
-      FOOTER
-      */}
 
       <Footer>
         <CharacterImageAndName
           style={{ gridArea: "character" }}
-          name="Pituar ñorà"
-          image={archer}
-          level={1}
+          name={playerUI.name}
+          image={getPlayerImage()}
+          level={playerUI.level}
         />
 
         <Stats
           style={{ gridArea: "stats" }}
-          dataBars={mockBars}
-          dataStats={mockStats}
+          dataBars={getStatsBars()}
+          dataStats={getStatsIndicators()}
           renderBarItem={(item) => (
             <PixelatedBar
+              key={item.name}
               style={{ marginBottom: "5px" }}
               name={item.name}
               color={item.color}
@@ -142,13 +88,17 @@ const BattleView = () => {
 
         <ListSkills
           style={{ gridArea: "skills" }}
-          data={mockSkills}
+          data={getSkills()}
           renderItem={(item) => (
             <Skill
+              key={item.name}
               image={item.image}
               name={item.name}
               force={item.force}
               cost={item.cost}
+              onClick={() => {
+                attack(item.name);
+              }}
             />
           )}
         />

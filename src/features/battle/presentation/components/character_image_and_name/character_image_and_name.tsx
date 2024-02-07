@@ -37,7 +37,7 @@ const CharacterImageAndName = ({ name, level, image, ...props }: Props) => {
         }}
       >
         <p>
-          {formatName(name)}{" "}
+          {formatName(name || "")}{" "}
           <span
             style={{
               color: "var(--color-secondary)",

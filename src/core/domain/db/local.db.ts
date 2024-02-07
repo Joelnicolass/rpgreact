@@ -19,11 +19,12 @@ export class LocalDataBase {
     return this._data;
   }
 
-  public load(): void {
+  public load(): string {
     const data = localStorage.getItem(LocalDataBase._KEY);
     if (!data) throw new Error("No data found");
 
     this._data = this._decrypt(data);
+    return this._data;
   }
 
   public save(data: string): void {

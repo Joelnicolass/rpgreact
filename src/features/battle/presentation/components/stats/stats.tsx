@@ -32,7 +32,7 @@ const Stats = ({ renderBarItem, dataBars, dataStats, ...props }: Props) => {
       >
         {dataStats &&
           dataStats.map((item) => (
-            <p>
+            <p key={item.name}>
               {item.name}: {item.current}
             </p>
           ))}
